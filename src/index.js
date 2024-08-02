@@ -67,6 +67,32 @@ function showDate (){
 
 }
 
+function showSelectedCity (event){
+    if (event.target.value.length > 0) {
+        let selectedCityTime = moment()
+          .tz(event.target.value)
+          .format("HH:mm:ss");
+        let selectedCityDay =
+        moment()
+          .tz(event.target.value)
+          .format("dddd, D MMMM, YYYY");
+          let newDivE = document.querySelector(".all-time-zones");
+          let selectedIndex = event.target.selectedIndex;
+          let selectedText = event.target.options[selectedIndex].text;
+    newDivE.innerHTML=`<div class="selected-city-data">
+      <p class="selected-city">🕓${selectedText}</p>
+      <p class="selected-city-time">${selectedCityTime}</p>
+      <p class="selected-city-day">${selectedCityDay}</p>
+    </div>`
+        }else{
+            location.reload();
+        }
+    
+    }
+
+    let citySelected = document.querySelector("#city");
+    citySelected.addEventListener("change", showSelectedCity);
+
 setTimeout(showTime,0);
 setTimeout(showDate,0);
 setInterval (showTime,1000);
