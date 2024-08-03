@@ -68,7 +68,12 @@ function showDate (){
 }
 
 function showSelectedCity (event){
+    let intervalId;
+    
+    clearInterval(intervalId);
+
     if (event.target.value.length > 0) {
+        function updateCityTime () {
         let selectedCityTime = moment()
           .tz(event.target.value)
           .format("HH:mm:ss");
@@ -83,7 +88,12 @@ function showSelectedCity (event){
       <p class="selected-city">🕓${selectedText}</p>
       <p class="selected-city-time">${selectedCityTime}</p>
       <p class="selected-city-day">${selectedCityDay}</p>
-    </div>`
+    </div>`}
+
+    updateCityTime();
+
+    intervalId = setInterval(updateCityTime, 1000);
+
         }else{
             location.reload();
         }
