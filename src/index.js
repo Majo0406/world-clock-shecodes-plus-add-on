@@ -95,7 +95,9 @@ function showSelectedCity (event){
       <p class="selected-city">🕓${selectedText}</p>
       <p class="selected-city-time">${selectedCityTime}</p>
       <p class="selected-city-day">${selectedCityDay}</p>
-    </div>`}
+    </div>
+    <a href="/">All cities</a>
+    `}
 
     updateCityTime();
 
