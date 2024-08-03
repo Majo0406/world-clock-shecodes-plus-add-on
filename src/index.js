@@ -68,22 +68,29 @@ function showDate (){
 }
 
 function showSelectedCity (event){
+    
     let intervalId;
+    
     
     clearInterval(intervalId);
 
     if (event.target.value.length > 0) {
+        
         function updateCityTime () {
+        let selectedCityZone = event.target.value;
+
+        if(selectedCityZone === "current"){
+            selectedCityZone = moment.tz.guess();
+        }
         let selectedCityTime = moment()
-          .tz(event.target.value)
+          .tz(selectedCityZone)
           .format("HH:mm:ss");
         let selectedCityDay =
         moment()
-          .tz(event.target.value)
+          .tz(selectedCityZone)
           .format("dddd, D MMMM, YYYY");
           let newDivE = document.querySelector(".all-time-zones");
-          let selectedIndex = event.target.selectedIndex;
-          let selectedText = event.target.options[selectedIndex].text;
+          let selectedText = selectedCityZone.replace("_", " ").split("/")[1];
     newDivE.innerHTML=`<div class="selected-city-data">
       <p class="selected-city">🕓${selectedText}</p>
       <p class="selected-city-time">${selectedCityTime}</p>
